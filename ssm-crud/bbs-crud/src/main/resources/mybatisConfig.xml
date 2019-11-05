@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 描述的是Mybatis的全局运行方式 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	<!-- 配置实体类的别名，
+	写了之后可以在写Sql配置文件例如<select>标签中的属性就可以不用写实体的具体路径直接用别名就可以了 -->
+	<typeAliases>
+		<package name="com.ren.bbs.bean"/>
+	</typeAliases>
+	<plugins>
+    <!-- 使用分页插件必须在mybatis中配置插件plugin -->
+    	<plugin interceptor="com.github.pagehelper.PageInterceptor">
+    		<property name="reasonable" value="true"/>
+    	</plugin>
+	</plugins>
+</configuration>
+<!-- 
+    plugins在配置文件中的位置必须符合要求，否则会报错，顺序如下:
+    properties?, settings?, 
+    typeAliases?, typeHandlers?, 
+    objectFactory?,objectWrapperFactory?, 
+    plugins?, 
+    environments?, databaseIdProvider?, mappers?
+-->
